@@ -5,9 +5,10 @@ running this script. word-today.js then exports today's new words plus a
 random sample of older words pulled back in for review, as a small
 JavaScript data file.
 
-vocab-today.html is a static, hand-maintained page (not generated) that
-loads word-today.js via <script src> and renders it client-side. It is not
-touched by this script — only word-today.js is regenerated. Rendering the
+index.html (formerly vocab-today.html, renamed for GitHub Pages) is a
+static, hand-maintained page (not generated) that loads word-today.js via
+<script src> and renders it client-side. It is not touched by this script —
+only word-today.js is regenerated. Rendering the
 data via a plain <script src> tag (rather than fetch()) is deliberate: it
 still works when the page is opened directly as a file:// URL in Chrome or
 Safari, which block fetch() of local files.
