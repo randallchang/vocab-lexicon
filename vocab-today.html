@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>今日學習</title>
+<style>
+:root {
+  --color-surface: #14110d;
+  --color-card: #1e1a15;
+  --color-text: #ede6da;
+  --color-muted: #a99c8a;
+  --color-accent: #e2895c;
+  --color-border: #38301f;
+  --font-serif: Georgia, "Noto Serif TC", serif;
+  --font-sans: -apple-system, "PingFang TC", "Segoe UI", sans-serif;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--color-surface);
+  color: var(--color-text);
+  font-family: var(--font-sans);
+  line-height: 1.6;
+  padding: 2rem 1.25rem 4rem;
+}
+header h1 {
+  font-family: var(--font-serif);
+  font-size: clamp(1.5rem, 1.2rem + 1.5vw, 2.25rem);
+  margin: 0 0 2rem;
+  text-align: center;
+  color: var(--color-accent);
+}
+main {
+  max-width: 760px;
+  margin: 0 auto;
+}
+h2 {
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  border-bottom: 2px solid var(--color-accent);
+  padding-bottom: 0.4rem;
+  margin: 2.5rem 0 1.25rem;
+}
+.word-card {
+  background: var(--color-card);
+  border: 1px solid var(--color-border);
+  border-radius: 10px;
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 1rem;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
+}
+.word-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+.word-title {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  min-width: 0;
+}
+.word-number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.6rem;
+  height: 1.6rem;
+  border-radius: 50%;
+  background: var(--color-accent);
+  color: var(--color-surface);
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  font-weight: bold;
+  flex-shrink: 0;
+}
+.word-head h3 {
+  margin: 0;
+  font-family: var(--font-serif);
+  font-size: 1.35rem;
+}
+.pos {
+  font-size: 0.8rem;
+  color: var(--color-muted);
+  font-weight: normal;
+  margin-left: 0.4rem;
+}
+.ipa {
+  font-family: "Doulos SIL", "Charis SIL", var(--font-serif);
+  color: var(--color-muted);
+  margin: 0.25rem 0 0.75rem;
+}
+.def-en { margin: 0.25rem 0; }
+.def-zh { margin: 0.25rem 0 0.9rem; color: var(--color-muted); }
+.example {
+  margin: 0;
+  padding-left: 0.9rem;
+  border-left: 3px solid var(--color-border);
+}
+.example-en { margin: 0 0 0.2rem; font-style: italic; }
+.example-zh { margin: 0; color: var(--color-muted); }
+.play-btn {
+  border: 1px solid var(--color-accent);
+  background: transparent;
+  color: var(--color-accent);
+  border-radius: 999px;
+  width: 2.1rem;
+  height: 2.1rem;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 150ms ease, color 150ms ease, transform 150ms ease;
+  flex-shrink: 0;
+}
+.play-btn:hover, .play-btn:focus-visible {
+  background: var(--color-accent);
+  color: #fff;
+}
+.play-btn:active { transform: scale(0.92); }
+.play-btn-sm {
+  width: 1.6rem;
+  height: 1.6rem;
+  font-size: 0.75rem;
+  vertical-align: middle;
+  margin-left: 0.3rem;
+}
+#speech-warning, #data-warning {
+  display: none;
+  max-width: 760px;
+  margin: 0 auto 1.5rem;
+  background: #3a1712;
+  border: 1px solid #7a3226;
+  color: #f2ada0;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  font-size: 0.9rem;
+}
+</style>
+</head>
+<body>
+<header><h1 id="page-title">今日學習</h1></header>
+<p id="speech-warning" role="alert">這個瀏覽器不支援語音播放（Web Speech API），發音按鈕暫時無法使用。</p>
+<p id="data-warning" role="alert">找不到今日資料，請先在專案目錄執行 <code>python3 render.py</code> 產生 word-today.js。</p>
+<main id="app"></main>
+
+<script src="word-today.js"></script>
+<script>
+(function () {
+  var app = document.getElementById('app');
+
+  if (typeof TODAY_DATA === 'undefined') {
+    document.getElementById('data-warning').style.display = 'block';
+    return;
+  }
+
+  document.getElementById('page-title').textContent = '今日學習（' + TODAY_DATA.date + '）';
+
+  function el(tag, opts) {
+    var e = document.createElement(tag);
+    opts = opts || {};
+    if (opts.className) e.className = opts.className;
+    if (opts.text !== undefined) e.textContent = opts.text;
+    return e;
+  }
+
+  function playButton(text, extraClass, label) {
+    var btn = el('button', { className: 'play-btn' + (extraClass ? ' ' + extraClass : ''), text: '\u{1F50A}' });
+    btn.dataset.speak = text;
+    btn.setAttribute('aria-label', label);
+    return btn;
+  }
+
+  function wordCard(w, number) {
+    var card = el('article', { className: 'word-card' });
+
+    var head = el('div', { className: 'word-head' });
+    var title = el('div', { className: 'word-title' });
+    if (number !== undefined) {
+      title.appendChild(el('span', { className: 'word-number', text: String(number) }));
+    }
+    var h3 = el('h3', { text: w.word });
+    h3.appendChild(el('span', { className: 'pos', text: w.pos }));
+    title.appendChild(h3);
+    head.appendChild(title);
+    head.appendChild(playButton(w.word, '', '播放 ' + w.word + ' 發音'));
+    card.appendChild(head);
+
+    card.appendChild(el('p', { className: 'ipa', text: '/' + w.ipa + '/' }));
+    card.appendChild(el('p', { className: 'def-en', text: w.en_def }));
+    card.appendChild(el('p', { className: 'def-zh', text: w.zh_def }));
+
+    var example = el('blockquote', { className: 'example' });
+    var exEn = el('p', { className: 'example-en', text: '“' + w.en_example + '”' });
+    exEn.appendChild(playButton(w.en_example, 'play-btn-sm', '播放例句發音'));
+    example.appendChild(exEn);
+    example.appendChild(el('p', { className: 'example-zh', text: w.zh_example }));
+    card.appendChild(example);
+
+    return card;
+  }
+
+  function section(headingId, headingText, words, numbered) {
+    if (!words || !words.length) return null;
+    var sec = document.createElement('section');
+    sec.setAttribute('aria-labelledby', headingId);
+    var h2 = el('h2', { text: headingText });
+    h2.id = headingId;
+    sec.appendChild(h2);
+    words.forEach(function (w, i) { sec.appendChild(wordCard(w, numbered ? i + 1 : undefined)); });
+    return sec;
+  }
+
+  var newSection = section('new-heading', '新單字', TODAY_DATA.newWords, true);
+  if (newSection) app.appendChild(newSection);
+
+  var reviewSection = section('review-heading', '複習（從單字庫隨機抽選）', TODAY_DATA.reviewWords, false);
+  if (reviewSection) app.appendChild(reviewSection);
+
+  if (!('speechSynthesis' in window)) {
+    document.getElementById('speech-warning').style.display = 'block';
+    document.querySelectorAll('.play-btn').forEach(function (btn) { btn.disabled = true; });
+    return;
+  }
+
+  var voices = [];
+  function refreshVoices() { voices = speechSynthesis.getVoices(); }
+  refreshVoices();
+  speechSynthesis.addEventListener('voiceschanged', refreshVoices);
+
+  function pickVoice() {
+    return voices.find(function (v) { return v.lang === 'en-GB'; })
+      || voices.find(function (v) { return v.lang && v.lang.startsWith('en'); })
+      || null;
+  }
+
+  document.querySelectorAll('.play-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var utterance = new SpeechSynthesisUtterance(btn.dataset.speak);
+      utterance.lang = 'en-GB';
+      var voice = pickVoice();
+      if (voice) utterance.voice = voice;
+      speechSynthesis.cancel();
+      speechSynthesis.speak(utterance);
+    });
+  });
+})();
+</script>
+</body>
+</html>
