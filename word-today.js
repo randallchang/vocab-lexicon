@@ -1,15 +1,188 @@
 const TODAY_DATA = {
-  "date": "2026-07-02",
+  "date": "2026-07-03",
   "newWords": [
     {
-      "word": "hegemony",
+      "word": "monarchy",
       "pos": "n.",
-      "ipa": "hɪˈɡɛməni",
-      "en_def": "dominance of one state, group, or idea over others",
-      "zh_def": "霸權",
-      "en_example": "For centuries, Rome's hegemony extended across the Mediterranean world.",
-      "zh_example": "羅馬的霸權在數個世紀裡擴及整個地中海世界。"
+      "ipa": "ˈmɒnəki",
+      "en_def": "a form of government with a hereditary ruler, typically a king or queen",
+      "zh_def": "君主制",
+      "en_example": "Constitutional monarchy replaced absolute rule in much of 19th-century Europe.",
+      "zh_example": "立憲君主制在十九世紀的歐洲多數地方取代了君主專制。"
     },
+    {
+      "word": "aristocracy",
+      "pos": "n.",
+      "ipa": "ˌærɪˈstɒkrəsi",
+      "en_def": "the highest class in certain societies, especially hereditary nobility",
+      "zh_def": "貴族階層",
+      "en_example": "The French Revolution stripped the aristocracy of many of its ancient privileges.",
+      "zh_example": "法國大革命剝奪了貴族階層許多古老的特權。"
+    },
+    {
+      "word": "absolutism",
+      "pos": "n.",
+      "ipa": "ˈæbsəluːtɪzəm",
+      "en_def": "a political system in which a ruler holds unrestricted power",
+      "zh_def": "專制主義",
+      "en_example": "Louis XIV epitomized the age of absolutism in European history.",
+      "zh_example": "路易十四是歐洲歷史上專制主義時代的典型代表。"
+    },
+    {
+      "word": "colonialism",
+      "pos": "n.",
+      "ipa": "kəˈləʊniəlɪzəm",
+      "en_def": "the policy of acquiring control over other territories and peoples",
+      "zh_def": "殖民主義",
+      "en_example": "The legacy of colonialism still shapes political boundaries across Africa and Asia.",
+      "zh_example": "殖民主義的遺緒至今仍形塑著非洲與亞洲的政治疆界。"
+    },
+    {
+      "word": "secularism",
+      "pos": "n.",
+      "ipa": "ˈsɛkjələrɪzəm",
+      "en_def": "the principle of separating religion from civic and political affairs",
+      "zh_def": "世俗主義",
+      "en_example": "The Enlightenment gradually pushed European governance toward secularism.",
+      "zh_example": "啟蒙運動逐漸將歐洲的治理推向世俗主義。"
+    },
+    {
+      "word": "humanism",
+      "pos": "n.",
+      "ipa": "ˈhjuːmənɪzəm",
+      "en_def": "an intellectual movement emphasizing human potential and achievement, especially in the Renaissance",
+      "zh_def": "人文主義",
+      "en_example": "Renaissance humanism placed human potential and achievement at the center of intellectual life.",
+      "zh_example": "文藝復興人文主義將人類的潛能與成就置於知識生活的核心。"
+    },
+    {
+      "word": "schism",
+      "pos": "n.",
+      "ipa": "ˈsɪzəm",
+      "en_def": "a split or division between strongly opposed groups, often religious",
+      "zh_def": "分裂",
+      "en_example": "The Great Schism of 1054 divided Christianity into Eastern and Western churches.",
+      "zh_example": "1054 年的教會大分裂使基督教分裂為東西兩派教會。"
+    },
+    {
+      "word": "reformation",
+      "pos": "n.",
+      "ipa": "ˌrɛfəˈmeɪʃən",
+      "en_def": "a movement for religious or political reform, especially 16th-century Christianity",
+      "zh_def": "宗教改革",
+      "en_example": "The Reformation permanently fractured the religious unity of Western Europe.",
+      "zh_example": "宗教改革永久地打破了西歐的宗教統一。"
+    },
+    {
+      "word": "despot",
+      "pos": "n.",
+      "ipa": "ˈdɛspət",
+      "en_def": "a ruler with absolute power, often exercised cruelly or oppressively",
+      "zh_def": "專制君主；暴君",
+      "en_example": "Historians still debate whether Peter the Great should be remembered as a reformer or a despot.",
+      "zh_example": "史學家至今仍在爭論彼得大帝該被視為改革者還是暴君。"
+    },
+    {
+      "word": "utopia",
+      "pos": "n.",
+      "ipa": "juːˈtəʊpiə",
+      "en_def": "an imagined place or state in which everything is perfect",
+      "zh_def": "烏托邦",
+      "en_example": "Thomas More's Utopia imagined an ideal society governed by reason.",
+      "zh_example": "湯瑪斯·摩爾的《烏托邦》構想了一個由理性治理的理想社會。"
+    },
+    {
+      "word": "dystopia",
+      "pos": "n.",
+      "ipa": "dɪsˈtəʊpiə",
+      "en_def": "an imagined society characterized by suffering, injustice, or oppression",
+      "zh_def": "反烏托邦",
+      "en_example": "Many 20th-century novels envisioned dystopia as a warning against totalitarianism.",
+      "zh_example": "許多二十世紀的小說將反烏托邦作為對極權主義的警示。"
+    },
+    {
+      "word": "anachronism",
+      "pos": "n.",
+      "ipa": "əˈnækrənɪzəm",
+      "en_def": "something that seems out of place in the historical period it belongs to",
+      "zh_def": "時代錯置",
+      "en_example": "Depicting medieval knights with firearms would be a glaring anachronism.",
+      "zh_example": "把中世紀騎士描繪成拿著槍械會是明顯的時代錯置。"
+    },
+    {
+      "word": "eloquent",
+      "pos": "adj.",
+      "ipa": "ˈɛləkwənt",
+      "en_def": "fluent and persuasive in speaking or writing",
+      "zh_def": "雄辯的；辭藻優美的",
+      "en_example": "Churchill's eloquent wartime speeches rallied a nation under siege.",
+      "zh_example": "邱吉爾在戰時雄辯滔滔的演說振奮了一個被圍困的國家。"
+    },
+    {
+      "word": "erudite",
+      "pos": "adj.",
+      "ipa": "ˈɛrjʊdaɪt",
+      "en_def": "having or showing great knowledge or learning",
+      "zh_def": "博學的",
+      "en_example": "The professor's erudite lectures on classical antiquity drew students from every department.",
+      "zh_example": "這位教授關於古典時代的博學講座吸引了各系學生前來聽講。"
+    },
+    {
+      "word": "venerable",
+      "pos": "adj.",
+      "ipa": "ˈvɛnərəbəl",
+      "en_def": "accorded great respect, especially because of age, wisdom, or character",
+      "zh_def": "令人尊敬的；德高望重的",
+      "en_example": "Oxford remains one of Europe's most venerable centers of learning.",
+      "zh_example": "牛津仍是歐洲最受尊崇的學術重鎮之一。"
+    },
+    {
+      "word": "quintessential",
+      "pos": "adj.",
+      "ipa": "ˌkwɪntɪˈsɛnʃəl",
+      "en_def": "representing the most perfect or typical example of a quality or class",
+      "zh_def": "典型的；精髓的",
+      "en_example": "Vienna is often considered the quintessential city of the Habsburg imagination.",
+      "zh_example": "維也納常被視為哈布斯堡想像中最典型的城市。"
+    },
+    {
+      "word": "Byzantine",
+      "pos": "adj.",
+      "ipa": "bɪˈzæntaɪn",
+      "en_def": "relating to the Byzantine Empire; or excessively complex and intricate",
+      "zh_def": "拜占庭的；錯綜複雜的",
+      "en_example": "The empire's court politics grew so Byzantine that few outsiders could follow them.",
+      "zh_example": "這個帝國的宮廷政治變得如此錯綜複雜，幾乎沒有外人能夠理解。"
+    },
+    {
+      "word": "Machiavellian",
+      "pos": "adj.",
+      "ipa": "ˌmækiəˈvɛliən",
+      "en_def": "cunning, scheming, and unscrupulous, especially in politics",
+      "zh_def": "權謀的；馬基維利式的",
+      "en_example": "Court intrigue in Renaissance Italy was often described as thoroughly Machiavellian.",
+      "zh_example": "文藝復興時期義大利的宮廷陰謀常被形容為十足的權謀算計。"
+    },
+    {
+      "word": "requiem",
+      "pos": "n.",
+      "ipa": "ˈrɛkwiəm",
+      "en_def": "a mass or musical composition for the dead; an act of solemn remembrance",
+      "zh_def": "安魂曲",
+      "en_example": "Mozart's unfinished Requiem has become one of the most haunting works in Western music.",
+      "zh_example": "莫札特未完成的《安魂曲》已成為西方音樂中最扣人心弦的作品之一。"
+    },
+    {
+      "word": "pantheon",
+      "pos": "n.",
+      "ipa": "ˈpænθiən",
+      "en_def": "a group of illustrious or notable people, or the deities of a religion collectively",
+      "zh_def": "眾神殿；名人殿堂",
+      "en_example": "Voltaire is enshrined in the Pantheon alongside other giants of French thought.",
+      "zh_example": "伏爾泰與其他法國思想巨擘一同安葬於先賢祠。"
+    }
+  ],
+  "reviewWords": [
     {
       "word": "feudalism",
       "pos": "n.",
@@ -18,42 +191,6 @@ const TODAY_DATA = {
       "zh_def": "封建制度",
       "en_example": "Feudalism shaped the social and political structure of medieval Europe.",
       "zh_example": "封建制度形塑了中世紀歐洲的社會與政治結構。"
-    },
-    {
-      "word": "annexation",
-      "pos": "n.",
-      "ipa": "ˌænɛkˈseɪʃən",
-      "en_def": "the action of forcibly adding a territory to one's own",
-      "zh_def": "兼併；併吞",
-      "en_example": "The annexation of Alsace-Lorraine remained a source of tension between France and Germany.",
-      "zh_example": "亞爾薩斯-洛林的兼併問題，長期是法德之間緊張關係的根源。"
-    },
-    {
-      "word": "sovereignty",
-      "pos": "n.",
-      "ipa": "ˈsɒvrɪnti",
-      "en_def": "supreme power or authority held by a state",
-      "zh_def": "主權",
-      "en_example": "The Peace of Westphalia is often credited with establishing the modern concept of state sovereignty.",
-      "zh_example": "西發里亞和約常被認為確立了現代國家主權的概念。"
-    },
-    {
-      "word": "partition",
-      "pos": "n./v.",
-      "ipa": "pɑːˈtɪʃən",
-      "en_def": "the division of a country into separate, self-governing parts",
-      "zh_def": "（國家的）分割；瓜分",
-      "en_example": "The partition of Poland in the late 18th century erased the country from the map for over a century.",
-      "zh_example": "十八世紀末波蘭遭到瓜分，使這個國家在地圖上消失了一個多世紀。"
-    },
-    {
-      "word": "zeitgeist",
-      "pos": "n.",
-      "ipa": "ˈtsaɪtɡaɪst",
-      "en_def": "the defining spirit or mood of a particular period in history",
-      "zh_def": "時代精神",
-      "en_example": "Goethe's works are often seen as capturing the zeitgeist of Romantic-era Germany.",
-      "zh_example": "歌德的作品常被視為捕捉了浪漫主義時期德國的時代精神。"
     },
     {
       "word": "Enlightenment",
@@ -74,78 +211,6 @@ const TODAY_DATA = {
       "zh_example": "義大利文藝復興孕育了米開朗基羅和達文西等大師。"
     },
     {
-      "word": "decadence",
-      "pos": "n.",
-      "ipa": "ˈdɛkədəns",
-      "en_def": "moral or cultural decline, often associated with self-indulgence",
-      "zh_def": "頹廢；衰落",
-      "en_example": "Historians often describe the late Roman Empire in terms of decadence and decline.",
-      "zh_example": "史學家常用頹廢與衰落來描述羅馬帝國晚期。"
-    },
-    {
-      "word": "baroque",
-      "pos": "adj.",
-      "ipa": "bəˈrɒk",
-      "en_def": "highly ornate and extravagant in style, especially in art and architecture",
-      "zh_def": "巴洛克風格的",
-      "en_example": "Versailles is a quintessential example of baroque architecture.",
-      "zh_example": "凡爾賽宮是巴洛克建築的典型代表。"
-    },
-    {
-      "word": "melancholic",
-      "pos": "adj.",
-      "ipa": "ˌmɛlənˈkɒlɪk",
-      "en_def": "having or expressing a pensive, thoughtful sadness",
-      "zh_def": "憂鬱的；感傷的",
-      "en_example": "The ruins evoked a melancholic sense of empires long vanished.",
-      "zh_example": "這些遺跡喚起一種對早已消逝帝國的憂鬱感懷。"
-    },
-    {
-      "word": "nostalgic",
-      "pos": "adj.",
-      "ipa": "nɒˈstældʒɪk",
-      "en_def": "feeling or expressing wistful affection for the past",
-      "zh_def": "懷舊的",
-      "en_example": "There is a nostalgic longing in much of European literature for a lost aristocratic age.",
-      "zh_example": "許多歐洲文學中都帶有對逝去貴族時代的懷舊渴望。"
-    },
-    {
-      "word": "sublime",
-      "pos": "adj.",
-      "ipa": "səˈblaɪm",
-      "en_def": "of such excellence, beauty, or grandeur as to inspire awe",
-      "zh_def": "崇高的；壯麗的",
-      "en_example": "Romantic painters sought to capture the sublime power of nature.",
-      "zh_example": "浪漫主義畫家試圖捕捉大自然那種令人敬畏的崇高力量。"
-    },
-    {
-      "word": "ephemeral",
-      "pos": "adj.",
-      "ipa": "ɪˈfɛmərəl",
-      "en_def": "lasting for a very short time",
-      "zh_def": "短暫的；朝生暮死的",
-      "en_example": "Empires, however powerful, often prove ephemeral against the span of history.",
-      "zh_example": "帝國無論多麼強盛，放在歷史長河中往往顯得短暫。"
-    },
-    {
-      "word": "evocative",
-      "pos": "adj.",
-      "ipa": "ɪˈvɒkətɪv",
-      "en_def": "bringing strong images, memories, or feelings to mind",
-      "zh_def": "引發聯想的；喚起回憶的",
-      "en_example": "The old quarter of Prague is remarkably evocative of its Habsburg past.",
-      "zh_example": "布拉格舊城區極為喚起人們對哈布斯堡王朝過往的聯想。"
-    },
-    {
-      "word": "epoch",
-      "pos": "n.",
-      "ipa": "ˈiːpɒk",
-      "en_def": "a period of time in history marked by notable events or characteristics",
-      "zh_def": "時代；紀元",
-      "en_example": "The fall of Constantinople in 1453 marked the end of one epoch and the beginning of another.",
-      "zh_example": "1453 年君士坦丁堡的陷落標誌著一個時代的終結與另一個時代的開始。"
-    },
-    {
       "word": "oeuvre",
       "pos": "n.",
       "ipa": "ˈɜːvrə",
@@ -155,78 +220,13 @@ const TODAY_DATA = {
       "zh_example": "林布蘭的全部作品涵蓋肖像畫、聖經場景與自畫像研究。"
     },
     {
-      "word": "allegory",
-      "pos": "n.",
-      "ipa": "ˈælɪɡəri",
-      "en_def": "a story, poem, or image with a hidden symbolic or moral meaning",
-      "zh_def": "寓言；寓意",
-      "en_example": "Dante's Divine Comedy functions as an allegory of the soul's journey toward God.",
-      "zh_example": "但丁的《神曲》可視為靈魂朝向上帝旅程的一則寓言。"
-    },
-    {
-      "word": "antiquity",
-      "pos": "n.",
-      "ipa": "ænˈtɪkwɪti",
-      "en_def": "the ancient past, especially the periods of Greek and Roman civilization",
-      "zh_def": "古代；古典時代",
-      "en_example": "Scholars of antiquity still debate the causes of Rome's fall.",
-      "zh_example": "研究古代史的學者至今仍在爭論羅馬衰亡的原因。"
-    },
-    {
-      "word": "iconoclast",
-      "pos": "n.",
-      "ipa": "aɪˈkɒnəklæst",
-      "en_def": "a person who attacks or challenges cherished beliefs or institutions",
-      "zh_def": "打破傳統者；反傳統者",
-      "en_example": "Martin Luther is remembered as a religious iconoclast who challenged the authority of the Church.",
-      "zh_example": "馬丁路德被視為挑戰教會權威的宗教反傳統者。"
-    }
-  ],
-  "reviewWords": [
-    {
-      "word": "quintessential",
+      "word": "melancholic",
       "pos": "adj.",
-      "ipa": "ˌkwɪntɪˈsɛnʃəl",
-      "en_def": "representing the most perfect or typical example of a quality or class",
-      "zh_def": "典型的；精髓的",
-      "en_example": "Vienna is often considered the quintessential city of the Habsburg imagination.",
-      "zh_example": "維也納常被視為哈布斯堡想像中最典型的城市。"
-    },
-    {
-      "word": "utopia",
-      "pos": "n.",
-      "ipa": "juːˈtəʊpiə",
-      "en_def": "an imagined place or state in which everything is perfect",
-      "zh_def": "烏托邦",
-      "en_example": "Thomas More's Utopia imagined an ideal society governed by reason.",
-      "zh_example": "湯瑪斯·摩爾的《烏托邦》構想了一個由理性治理的理想社會。"
-    },
-    {
-      "word": "eloquent",
-      "pos": "adj.",
-      "ipa": "ˈɛləkwənt",
-      "en_def": "fluent and persuasive in speaking or writing",
-      "zh_def": "雄辯的；辭藻優美的",
-      "en_example": "Churchill's eloquent wartime speeches rallied a nation under siege.",
-      "zh_example": "邱吉爾在戰時雄辯滔滔的演說振奮了一個被圍困的國家。"
-    },
-    {
-      "word": "schism",
-      "pos": "n.",
-      "ipa": "ˈsɪzəm",
-      "en_def": "a split or division between strongly opposed groups, often religious",
-      "zh_def": "分裂",
-      "en_example": "The Great Schism of 1054 divided Christianity into Eastern and Western churches.",
-      "zh_example": "1054 年的教會大分裂使基督教分裂為東西兩派教會。"
-    },
-    {
-      "word": "Byzantine",
-      "pos": "adj.",
-      "ipa": "bɪˈzæntaɪn",
-      "en_def": "relating to the Byzantine Empire; or excessively complex and intricate",
-      "zh_def": "拜占庭的；錯綜複雜的",
-      "en_example": "The empire's court politics grew so Byzantine that few outsiders could follow them.",
-      "zh_example": "這個帝國的宮廷政治變得如此錯綜複雜，幾乎沒有外人能夠理解。"
+      "ipa": "ˌmɛlənˈkɒlɪk",
+      "en_def": "having or expressing a pensive, thoughtful sadness",
+      "zh_def": "憂鬱的；感傷的",
+      "en_example": "The ruins evoked a melancholic sense of empires long vanished.",
+      "zh_example": "這些遺跡喚起一種對早已消逝帝國的憂鬱感懷。"
     }
   ]
 };
