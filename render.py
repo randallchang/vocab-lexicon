@@ -25,8 +25,8 @@ import sys
 from datetime import date
 from pathlib import Path
 
-COLUMNS = ["date", "word", "pos", "ipa", "en_def", "zh_def", "en_example", "zh_example"]
-WORD_FIELDS = ["word", "pos", "ipa", "en_def", "zh_def", "en_example", "zh_example"]
+COLUMNS = ["date", "word", "pos", "ipa", "en_def", "zh_def", "en_example", "en_example_chunks", "zh_example"]
+WORD_FIELDS = ["word", "pos", "ipa", "en_def", "zh_def", "en_example", "en_example_chunks", "zh_example"]
 
 
 def load_bank(csv_path: Path) -> list[dict]:

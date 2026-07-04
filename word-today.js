@@ -1,167 +1,217 @@
 const TODAY_DATA = {
-  "date": "2026-07-03",
+  "date": "2026-07-04",
   "newWords": [
     {
-      "word": "monarchy",
+      "word": "bourgeoisie",
       "pos": "n.",
-      "ipa": "ˈmɒnəki",
-      "en_def": "a form of government with a hereditary ruler, typically a king or queen",
-      "zh_def": "君主制",
-      "en_example": "Constitutional monarchy replaced absolute rule in much of 19th-century Europe.",
-      "zh_example": "立憲君主制在十九世紀的歐洲多數地方取代了君主專制。"
+      "ipa": "ˌbʊəʒwɑːˈziː",
+      "en_def": "the middle class, especially as contrasted with the aristocracy or the working class",
+      "zh_def": "中產階級；資產階級",
+      "en_example": "Marx argued that the bourgeoisie had accumulated wealth at the expense of the industrial working class.",
+      "en_example_chunks": "Marx argued / that the bourgeoisie had accumulated wealth / at the expense / of the industrial working class.",
+      "zh_example": "馬克思主張資產階級的財富累積是以犧牲產業工人階級為代價。"
     },
     {
-      "word": "aristocracy",
+      "word": "proletariat",
       "pos": "n.",
-      "ipa": "ˌærɪˈstɒkrəsi",
-      "en_def": "the highest class in certain societies, especially hereditary nobility",
-      "zh_def": "貴族階層",
-      "en_example": "The French Revolution stripped the aristocracy of many of its ancient privileges.",
-      "zh_example": "法國大革命剝奪了貴族階層許多古老的特權。"
+      "ipa": "ˌprəʊlɪˈteəriət",
+      "en_def": "the working class, especially those without property who must sell their labour to survive, in Marxist theory",
+      "zh_def": "無產階級",
+      "en_example": "The pamphlet called upon the proletariat of every nation to unite against their capitalist rulers.",
+      "en_example_chunks": "The pamphlet called upon the proletariat of every nation / to unite against their capitalist rulers.",
+      "zh_example": "這本小冊子呼籲各國的無產階級團結起來對抗資本主義統治者。"
     },
     {
-      "word": "absolutism",
+      "word": "fresco",
       "pos": "n.",
-      "ipa": "ˈæbsəluːtɪzəm",
-      "en_def": "a political system in which a ruler holds unrestricted power",
-      "zh_def": "專制主義",
-      "en_example": "Louis XIV epitomized the age of absolutism in European history.",
-      "zh_example": "路易十四是歐洲歷史上專制主義時代的典型代表。"
+      "ipa": "ˈfrɛskəʊ",
+      "en_def": "a painting done rapidly on wet plaster on a wall or ceiling, so the colours become fixed as it dries",
+      "zh_def": "濕壁畫",
+      "en_example": "Michelangelo spent four years painting the frescoes on the ceiling of the Sistine Chapel.",
+      "en_example_chunks": "Michelangelo spent four years painting the frescoes / on the ceiling / of the Sistine Chapel.",
+      "zh_example": "米開朗基羅花了四年時間繪製西斯汀教堂天花板上的濕壁畫。"
     },
     {
-      "word": "colonialism",
+      "word": "neoclassicism",
       "pos": "n.",
-      "ipa": "kəˈləʊniəlɪzəm",
-      "en_def": "the policy of acquiring control over other territories and peoples",
-      "zh_def": "殖民主義",
-      "en_example": "The legacy of colonialism still shapes political boundaries across Africa and Asia.",
-      "zh_example": "殖民主義的遺緒至今仍形塑著非洲與亞洲的政治疆界。"
+      "ipa": "ˌniːəʊˈklæsɪsɪzəm",
+      "en_def": "a revival of classical Greek and Roman styles in art, architecture, and literature, especially in the 18th and early 19th centuries",
+      "zh_def": "新古典主義",
+      "en_example": "Neoclassicism emerged as a reaction against the ornate excesses of the Baroque and Rococo periods.",
+      "en_example_chunks": "Neoclassicism emerged as a reaction / against the ornate excesses / of the Baroque and Rococo periods.",
+      "zh_example": "新古典主義的興起是對巴洛克與洛可可時期華麗過度風格的一種反動。"
     },
     {
-      "word": "secularism",
+      "word": "romanticism",
       "pos": "n.",
-      "ipa": "ˈsɛkjələrɪzəm",
-      "en_def": "the principle of separating religion from civic and political affairs",
-      "zh_def": "世俗主義",
-      "en_example": "The Enlightenment gradually pushed European governance toward secularism.",
-      "zh_example": "啟蒙運動逐漸將歐洲的治理推向世俗主義。"
+      "ipa": "rəʊˈmæntɪsɪzəm",
+      "en_def": "an artistic and intellectual movement of the late 18th and 19th centuries emphasising emotion, imagination, and the sublime power of nature",
+      "zh_def": "浪漫主義",
+      "en_example": "Romanticism celebrated the solitary genius and the untamed grandeur of the natural world.",
+      "en_example_chunks": "Romanticism celebrated the solitary genius and the untamed grandeur / of the natural world.",
+      "zh_example": "浪漫主義歌頌孤獨的天才以及大自然狂野未馴的壯麗。"
     },
     {
-      "word": "humanism",
+      "word": "modernity",
       "pos": "n.",
-      "ipa": "ˈhjuːmənɪzəm",
-      "en_def": "an intellectual movement emphasizing human potential and achievement, especially in the Renaissance",
-      "zh_def": "人文主義",
-      "en_example": "Renaissance humanism placed human potential and achievement at the center of intellectual life.",
-      "zh_example": "文藝復興人文主義將人類的潛能與成就置於知識生活的核心。"
+      "ipa": "mɒˈdɜːnɪti",
+      "en_def": "the quality or condition of being modern; the historical period and cultural conditions associated with industrial and post-industrial society",
+      "zh_def": "現代性",
+      "en_example": "The rapid growth of the railway network became a potent symbol of modernity in 19th-century Europe.",
+      "en_example_chunks": "The rapid growth of the railway network / became a potent symbol / of modernity / in 19th-century Europe.",
+      "zh_example": "鐵路網的快速擴張成為十九世紀歐洲現代性的有力象徵。"
     },
     {
-      "word": "schism",
+      "word": "chronicle",
       "pos": "n.",
-      "ipa": "ˈsɪzəm",
-      "en_def": "a split or division between strongly opposed groups, often religious",
-      "zh_def": "分裂",
-      "en_example": "The Great Schism of 1054 divided Christianity into Eastern and Western churches.",
-      "zh_example": "1054 年的教會大分裂使基督教分裂為東西兩派教會。"
+      "ipa": "ˈkrɒnɪkl",
+      "en_def": "a written record of historical events in the order in which they occurred",
+      "zh_def": "編年史；紀事",
+      "en_example": "Medieval monks kept meticulous chronicles of famines, wars, and royal successions.",
+      "en_example_chunks": "Medieval monks kept meticulous chronicles / of famines, / wars, / and royal successions.",
+      "zh_example": "中世紀的修士仔細記錄了饑荒、戰爭與王位繼承的編年史。"
     },
     {
-      "word": "reformation",
+      "word": "epitaph",
       "pos": "n.",
-      "ipa": "ˌrɛfəˈmeɪʃən",
-      "en_def": "a movement for religious or political reform, especially 16th-century Christianity",
-      "zh_def": "宗教改革",
-      "en_example": "The Reformation permanently fractured the religious unity of Western Europe.",
-      "zh_example": "宗教改革永久地打破了西歐的宗教統一。"
+      "ipa": "ˈɛpɪtɑːf",
+      "en_def": "words inscribed on a tombstone or monument in memory of the person buried there",
+      "zh_def": "墓誌銘",
+      "en_example": "The epitaph on Keats's gravestone reads, \"Here lies one whose name was writ in water.\"",
+      "en_example_chunks": "The epitaph on Keats's gravestone / reads, / \"Here lies one whose name was writ in water.\"",
+      "zh_example": "濟慈墓碑上的墓誌銘寫著：「這裡躺著一個名字寫在水上的人。」"
     },
     {
-      "word": "despot",
+      "word": "relic",
       "pos": "n.",
-      "ipa": "ˈdɛspət",
-      "en_def": "a ruler with absolute power, often exercised cruelly or oppressively",
-      "zh_def": "專制君主；暴君",
-      "en_example": "Historians still debate whether Peter the Great should be remembered as a reformer or a despot.",
-      "zh_example": "史學家至今仍在爭論彼得大帝該被視為改革者還是暴君。"
+      "ipa": "ˈrɛlɪk",
+      "en_def": "an object, custom, or belief surviving from an earlier time, often venerated for historical or religious significance",
+      "zh_def": "遺物；聖髑；遺跡",
+      "en_example": "Pilgrims travelled for weeks to venerate the relics housed in the cathedral's reliquary.",
+      "en_example_chunks": "Pilgrims travelled for weeks / to venerate the relics / housed in the cathedral's reliquary.",
+      "zh_example": "朝聖者跋涉數週，只為瞻仰大教堂聖髑盒中珍藏的聖物。"
     },
     {
-      "word": "utopia",
+      "word": "patronage",
       "pos": "n.",
-      "ipa": "juːˈtəʊpiə",
-      "en_def": "an imagined place or state in which everything is perfect",
-      "zh_def": "烏托邦",
-      "en_example": "Thomas More's Utopia imagined an ideal society governed by reason.",
-      "zh_example": "湯瑪斯·摩爾的《烏托邦》構想了一個由理性治理的理想社會。"
+      "ipa": "ˈpætrənɪdʒ",
+      "en_def": "the support, especially financial, given by a patron to an artist, writer, or institution",
+      "zh_def": "贊助；資助",
+      "en_example": "Without the patronage of the Medici family, much of Florentine Renaissance art might never have been created.",
+      "en_example_chunks": "Without the patronage of the Medici family, / much of Florentine Renaissance art / might never have been created.",
+      "zh_example": "若沒有麥地奇家族的贊助，佛羅倫斯文藝復興時期的許多藝術作品或許根本不會誕生。"
     },
     {
-      "word": "dystopia",
+      "word": "chivalry",
       "pos": "n.",
-      "ipa": "dɪsˈtəʊpiə",
-      "en_def": "an imagined society characterized by suffering, injustice, or oppression",
-      "zh_def": "反烏托邦",
-      "en_example": "Many 20th-century novels envisioned dystopia as a warning against totalitarianism.",
-      "zh_example": "許多二十世紀的小說將反烏托邦作為對極權主義的警示。"
+      "ipa": "ˈʃɪvəlri",
+      "en_def": "the medieval knightly code of conduct emphasising honour, courtesy, and protection of the weak",
+      "zh_def": "騎士精神",
+      "en_example": "Tales of chivalry and courtly love flourished in the romances of medieval France.",
+      "en_example_chunks": "Tales of chivalry and courtly love / flourished in the romances / of medieval France.",
+      "zh_example": "騎士精神與宮廷愛情的故事在中世紀法國的傳奇文學中蓬勃發展。"
     },
     {
-      "word": "anachronism",
+      "word": "asceticism",
       "pos": "n.",
-      "ipa": "əˈnækrənɪzəm",
-      "en_def": "something that seems out of place in the historical period it belongs to",
-      "zh_def": "時代錯置",
-      "en_example": "Depicting medieval knights with firearms would be a glaring anachronism.",
-      "zh_example": "把中世紀騎士描繪成拿著槍械會是明顯的時代錯置。"
+      "ipa": "əˈsɛtɪsɪzəm",
+      "en_def": "a lifestyle of severe self-discipline and abstention from worldly pleasures, often for religious or spiritual reasons",
+      "zh_def": "苦行主義；禁慾主義",
+      "en_example": "Early Christian hermits practised extreme asceticism, retreating into the desert to fast and pray.",
+      "en_example_chunks": "Early Christian hermits practised extreme asceticism, / retreating into the desert / to fast and pray.",
+      "zh_example": "早期基督教隱士奉行極端的苦行主義，隱居沙漠齋戒祈禱。"
     },
     {
-      "word": "eloquent",
+      "word": "hedonism",
+      "pos": "n.",
+      "ipa": "ˈhiːdənɪzəm",
+      "en_def": "the pursuit of pleasure and sensory gratification as the highest good",
+      "zh_def": "享樂主義",
+      "en_example": "The decadent salons of fin-de-siècle Paris were often accused of unchecked hedonism.",
+      "en_example_chunks": "The decadent salons of fin-de-siècle Paris / were often accused / of unchecked hedonism.",
+      "zh_example": "世紀末巴黎那些頹廢的沙龍常被指責放縱於毫無節制的享樂主義。"
+    },
+    {
+      "word": "cosmopolitan",
       "pos": "adj.",
-      "ipa": "ˈɛləkwənt",
-      "en_def": "fluent and persuasive in speaking or writing",
-      "zh_def": "雄辯的；辭藻優美的",
-      "en_example": "Churchill's eloquent wartime speeches rallied a nation under siege.",
-      "zh_example": "邱吉爾在戰時雄辯滔滔的演說振奮了一個被圍困的國家。"
+      "ipa": "ˌkɒzməˈpɒlɪtən",
+      "en_def": "familiar with and at ease in many different countries and cultures; worldly",
+      "zh_def": "世界主義的；見多識廣的",
+      "en_example": "Vienna at the turn of the century was a cosmopolitan hub where artists, exiles, and intellectuals mingled freely.",
+      "en_example_chunks": "Vienna at the turn of the century / was a cosmopolitan hub / where artists, exiles, and intellectuals mingled freely.",
+      "zh_example": "世紀之交的維也納是個世界主義薈萃之地，藝術家、流亡者與知識分子在此自由交融。"
     },
     {
-      "word": "erudite",
+      "word": "bohemian",
       "pos": "adj.",
-      "ipa": "ˈɛrjʊdaɪt",
-      "en_def": "having or showing great knowledge or learning",
-      "zh_def": "博學的",
-      "en_example": "The professor's erudite lectures on classical antiquity drew students from every department.",
-      "zh_example": "這位教授關於古典時代的博學講座吸引了各系學生前來聽講。"
+      "ipa": "bəʊˈhiːmiən",
+      "en_def": "socially unconventional, especially in an artistic way; associated with a lifestyle disregarding conventional norms",
+      "zh_def": "波希米亞式的；不受拘束的（藝術家式的）",
+      "en_example": "The bohemian cafés of Montmartre attracted painters and poets who scorned bourgeois respectability.",
+      "en_example_chunks": "The bohemian cafés of Montmartre / attracted painters and poets / who scorned bourgeois respectability.",
+      "zh_example": "蒙馬特的波希米亞式咖啡館吸引了那些鄙視資產階級體面的畫家與詩人。"
     },
     {
-      "word": "venerable",
-      "pos": "adj.",
-      "ipa": "ˈvɛnərəbəl",
-      "en_def": "accorded great respect, especially because of age, wisdom, or character",
-      "zh_def": "令人尊敬的；德高望重的",
-      "en_example": "Oxford remains one of Europe's most venerable centers of learning.",
-      "zh_example": "牛津仍是歐洲最受尊崇的學術重鎮之一。"
+      "word": "dilettante",
+      "pos": "n.",
+      "ipa": "ˌdɪləˈtænti",
+      "en_def": "a person who cultivates an interest in the arts or a particular subject without real commitment or knowledge",
+      "zh_def": "業餘愛好者；淺嘗輒止者",
+      "en_example": "Critics dismissed him as a mere dilettante, dabbling in poetry without any true discipline.",
+      "en_example_chunks": "Critics dismissed him as a mere dilettante, / dabbling in poetry / without any true discipline.",
+      "zh_example": "評論家將他貶為不過是個附庸風雅的業餘愛好者，寫詩全無真正的鍛鍊。"
     },
     {
-      "word": "quintessential",
-      "pos": "adj.",
-      "ipa": "ˌkwɪntɪˈsɛnʃəl",
-      "en_def": "representing the most perfect or typical example of a quality or class",
-      "zh_def": "典型的；精髓的",
-      "en_example": "Vienna is often considered the quintessential city of the Habsburg imagination.",
-      "zh_example": "維也納常被視為哈布斯堡想像中最典型的城市。"
+      "word": "connoisseur",
+      "pos": "n.",
+      "ipa": "ˌkɒnəˈsɜː",
+      "en_def": "an expert judge in matters of taste, especially in the fine arts",
+      "zh_def": "鑑賞家；行家",
+      "en_example": "A true connoisseur of Baroque music can distinguish Vivaldi's style from Corelli's within a few bars.",
+      "en_example_chunks": "A true connoisseur of Baroque music / can distinguish Vivaldi's style / from Corelli's / within a few bars.",
+      "zh_example": "真正的巴洛克音樂鑑賞家只需幾個小節，就能分辨出韋瓦第與柯瑞里的風格差異。"
     },
     {
-      "word": "Byzantine",
+      "word": "opulent",
       "pos": "adj.",
-      "ipa": "bɪˈzæntaɪn",
-      "en_def": "relating to the Byzantine Empire; or excessively complex and intricate",
-      "zh_def": "拜占庭的；錯綜複雜的",
-      "en_example": "The empire's court politics grew so Byzantine that few outsiders could follow them.",
-      "zh_example": "這個帝國的宮廷政治變得如此錯綜複雜，幾乎沒有外人能夠理解。"
+      "ipa": "ˈɒpjələnt",
+      "en_def": "ostentatiously rich and luxurious",
+      "zh_def": "奢華的；豪奢的",
+      "en_example": "The palace's opulent halls, lined with gilded mirrors, were designed to overwhelm foreign envoys.",
+      "en_example_chunks": "The palace's opulent halls, / lined with gilded mirrors, / were designed / to overwhelm foreign envoys.",
+      "zh_example": "宮殿裡奢華的大廳，鑲滿鍍金鏡子，是為了讓外國使節為之震懾而設計的。"
     },
     {
-      "word": "Machiavellian",
+      "word": "austere",
       "pos": "adj.",
-      "ipa": "ˌmækiəˈvɛliən",
-      "en_def": "cunning, scheming, and unscrupulous, especially in politics",
-      "zh_def": "權謀的；馬基維利式的",
-      "en_example": "Court intrigue in Renaissance Italy was often described as thoroughly Machiavellian.",
-      "zh_example": "文藝復興時期義大利的宮廷陰謀常被形容為十足的權謀算計。"
+      "ipa": "ɔːˈstɪə",
+      "en_def": "severe or strict in manner or appearance; without decoration or luxury",
+      "zh_def": "樸素的；嚴峻的；苦行的",
+      "en_example": "The Puritan meeting house stood in austere contrast to the ornate cathedrals of the old faith.",
+      "en_example_chunks": "The Puritan meeting house stood in austere contrast / to the ornate cathedrals / of the old faith.",
+      "zh_example": "清教徒的聚會所樸素無華，與舊信仰那些華麗的大教堂形成強烈對比。"
+    },
+    {
+      "word": "eclectic",
+      "pos": "adj.",
+      "ipa": "ɪˈklɛktɪk",
+      "en_def": "deriving ideas, style, or taste from a broad and diverse range of sources",
+      "zh_def": "兼容並蓄的；博採眾長的",
+      "en_example": "The palazzo's eclectic décor mixed Gothic arches, Moorish tiles, and Baroque frescoes under one roof.",
+      "en_example_chunks": "The palazzo's eclectic décor mixed Gothic arches, / Moorish tiles, / and Baroque frescoes / under one roof.",
+      "zh_example": "這座宮邸兼容並蓄的裝潢，將哥德式拱門、摩爾風格磁磚與巴洛克濕壁畫融於一體。"
+    }
+  ],
+  "reviewWords": [
+    {
+      "word": "decadence",
+      "pos": "n.",
+      "ipa": "ˈdɛkədəns",
+      "en_def": "moral or cultural decline, often associated with self-indulgence",
+      "zh_def": "頹廢；衰落",
+      "en_example": "Historians often describe the late Roman Empire in terms of decadence and decline.",
+      "en_example_chunks": "Historians often describe the late Roman Empire / in terms of decadence and decline.",
+      "zh_example": "史學家常用頹廢與衰落來描述羅馬帝國晚期。"
     },
     {
       "word": "requiem",
@@ -170,63 +220,38 @@ const TODAY_DATA = {
       "en_def": "a mass or musical composition for the dead; an act of solemn remembrance",
       "zh_def": "安魂曲",
       "en_example": "Mozart's unfinished Requiem has become one of the most haunting works in Western music.",
+      "en_example_chunks": "Mozart's unfinished Requiem has become one of the most haunting works / in Western music.",
       "zh_example": "莫札特未完成的《安魂曲》已成為西方音樂中最扣人心弦的作品之一。"
     },
     {
-      "word": "pantheon",
+      "word": "anachronism",
       "pos": "n.",
-      "ipa": "ˈpænθiən",
-      "en_def": "a group of illustrious or notable people, or the deities of a religion collectively",
-      "zh_def": "眾神殿；名人殿堂",
-      "en_example": "Voltaire is enshrined in the Pantheon alongside other giants of French thought.",
-      "zh_example": "伏爾泰與其他法國思想巨擘一同安葬於先賢祠。"
-    }
-  ],
-  "reviewWords": [
+      "ipa": "əˈnækrənɪzəm",
+      "en_def": "something that seems out of place in the historical period it belongs to",
+      "zh_def": "時代錯置",
+      "en_example": "Depicting medieval knights with firearms would be a glaring anachronism.",
+      "en_example_chunks": "Depicting medieval knights with firearms / would be a glaring anachronism.",
+      "zh_example": "把中世紀騎士描繪成拿著槍械會是明顯的時代錯置。"
+    },
     {
-      "word": "feudalism",
+      "word": "secularism",
       "pos": "n.",
-      "ipa": "ˈfjuːdəlɪzəm",
-      "en_def": "a social system based on lords, vassals, and land tenure, dominant in medieval Europe",
-      "zh_def": "封建制度",
-      "en_example": "Feudalism shaped the social and political structure of medieval Europe.",
-      "zh_example": "封建制度形塑了中世紀歐洲的社會與政治結構。"
+      "ipa": "ˈsɛkjələrɪzəm",
+      "en_def": "the principle of separating religion from civic and political affairs",
+      "zh_def": "世俗主義",
+      "en_example": "The Enlightenment gradually pushed European governance toward secularism.",
+      "en_example_chunks": "The Enlightenment gradually pushed European governance / toward secularism.",
+      "zh_example": "啟蒙運動逐漸將歐洲的治理推向世俗主義。"
     },
     {
-      "word": "Enlightenment",
-      "pos": "n. (historical period)",
-      "ipa": "ɪnˈlaɪtənmənt",
-      "en_def": "the 18th-century intellectual movement emphasizing reason and individualism over tradition",
-      "zh_def": "啟蒙運動",
-      "en_example": "Enlightenment thinkers like Voltaire championed reason over superstition.",
-      "zh_example": "像伏爾泰這樣的啟蒙運動思想家推崇理性、反對迷信。"
-    },
-    {
-      "word": "Renaissance",
-      "pos": "n. (historical period)",
-      "ipa": "rəˈneɪsəns",
-      "en_def": "the revival of art, literature, and learning in Europe from the 14th to 16th century",
-      "zh_def": "文藝復興",
-      "en_example": "The Italian Renaissance produced masters such as Michelangelo and Leonardo da Vinci.",
-      "zh_example": "義大利文藝復興孕育了米開朗基羅和達文西等大師。"
-    },
-    {
-      "word": "oeuvre",
-      "pos": "n.",
-      "ipa": "ˈɜːvrə",
-      "en_def": "the complete body of work produced by an artist, writer, or composer",
-      "zh_def": "（藝術家的）全部作品",
-      "en_example": "Rembrandt's oeuvre spans portraits, biblical scenes, and self-studies.",
-      "zh_example": "林布蘭的全部作品涵蓋肖像畫、聖經場景與自畫像研究。"
-    },
-    {
-      "word": "melancholic",
+      "word": "eloquent",
       "pos": "adj.",
-      "ipa": "ˌmɛlənˈkɒlɪk",
-      "en_def": "having or expressing a pensive, thoughtful sadness",
-      "zh_def": "憂鬱的；感傷的",
-      "en_example": "The ruins evoked a melancholic sense of empires long vanished.",
-      "zh_example": "這些遺跡喚起一種對早已消逝帝國的憂鬱感懷。"
+      "ipa": "ˈɛləkwənt",
+      "en_def": "fluent and persuasive in speaking or writing",
+      "zh_def": "雄辯的；辭藻優美的",
+      "en_example": "Churchill's eloquent wartime speeches rallied a nation under siege.",
+      "en_example_chunks": "Churchill's eloquent wartime speeches rallied a nation / under siege.",
+      "zh_example": "邱吉爾在戰時雄辯滔滔的演說振奮了一個被圍困的國家。"
     }
   ]
 };
