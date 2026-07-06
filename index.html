@@ -59,6 +59,23 @@ header h1 {
   background: var(--color-accent);
   color: #fff;
 }
+.voice-picker {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  color: var(--color-muted);
+}
+#voice-select {
+  background: var(--color-card);
+  color: var(--color-text);
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  padding: 0.4rem 0.9rem;
+  font-size: 0.85rem;
+  max-width: 14rem;
+}
+#voice-select:focus-visible { outline: 2px solid var(--color-accent); }
 body.hide-zh .def-zh, body.hide-zh .example-zh { visibility: hidden; }
 main {
   max-width: 760px;
@@ -172,6 +189,10 @@ h2 {
 <body class="hide-zh">
 <header>
   <h1 id="page-title">今日學習</h1>
+  <div class="voice-picker">
+    <label for="voice-select">發音語音</label>
+    <select id="voice-select" aria-label="選擇發音語音"></select>
+  </div>
 </header>
 <button id="toggle-zh" type="button" aria-pressed="true">顯示中文</button>
 <p id="speech-warning" role="alert">這個瀏覽器不支援語音播放（Web Speech API），發音按鈕暫時無法使用。</p>
@@ -271,19 +292,53 @@ h2 {
   var reviewSection = section('review-heading', '複習（從單字庫隨機抽選）', TODAY_DATA.reviewWords, false);
   if (reviewSection) app.appendChild(reviewSection);
 
+  var voiceSelect = document.getElementById('voice-select');
+
   if (!('speechSynthesis' in window)) {
     document.getElementById('speech-warning').style.display = 'block';
     document.querySelectorAll('.play-btn').forEach(function (btn) { btn.disabled = true; });
+    voiceSelect.disabled = true;
     return;
   }
 
+  var VOICE_STORAGE_KEY = 'vocab-voice-name';
   var voices = [];
-  function refreshVoices() { voices = speechSynthesis.getVoices(); }
+
+  function populateVoiceSelect() {
+    var enVoices = voices.filter(function (v) { return v.lang && v.lang.startsWith('en'); });
+    if (!enVoices.length) return;
+
+    var previousValue = voiceSelect.value;
+    voiceSelect.innerHTML = '';
+    enVoices.forEach(function (v) {
+      var opt = el('option', { text: v.name + ' (' + v.lang + ')' });
+      opt.value = v.name;
+      voiceSelect.appendChild(opt);
+    });
+
+    var saved = localStorage.getItem(VOICE_STORAGE_KEY);
+    if (saved && enVoices.some(function (v) { return v.name === saved; })) {
+      voiceSelect.value = saved;
+    } else if (previousValue && enVoices.some(function (v) { return v.name === previousValue; })) {
+      voiceSelect.value = previousValue;
+    }
+  }
+
+  function refreshVoices() {
+    voices = speechSynthesis.getVoices();
+    populateVoiceSelect();
+  }
   refreshVoices();
   speechSynthesis.addEventListener('voiceschanged', refreshVoices);
 
+  voiceSelect.addEventListener('change', function () {
+    localStorage.setItem(VOICE_STORAGE_KEY, voiceSelect.value);
+  });
+
   function pickVoice() {
-    return voices.find(function (v) { return v.lang === 'en-GB'; })
+    var chosen = voices.find(function (v) { return v.name === voiceSelect.value; });
+    return chosen
+      || voices.find(function (v) { return v.lang === 'en-GB'; })
       || voices.find(function (v) { return v.lang && v.lang.startsWith('en'); })
       || null;
   }
