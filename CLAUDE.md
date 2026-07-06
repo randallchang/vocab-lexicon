@@ -35,7 +35,7 @@ These are guidance for judgment calls, not a mechanical algorithm — e.g. a sho
 
 The user drives this — they ask, they don't want it automated/scheduled unless they say otherwise.
 
-1. Pick ~20 new words on the history/humanities theme. Check `data/words-bank.csv` first and avoid words already in it.
+1. Pick ~10 new words on the history/humanities theme. Check `data/words-bank.csv` first and avoid words already in it.
 2. For each word, write: word, part of speech, IPA, English definition, Chinese definition, an English example sentence (ideally with historical/cultural flavor), a pause-grouped version of that same sentence (`en_example_chunks`, see below), Chinese translation of the example.
    - IPA must be **British (RP)**, not American: non-rhotic (no /r/ before a consonant or word-finally, e.g. `pɑːˈtɪʃən` not `pɑːrˈtɪʃən`), GOAT vowel `əʊ` not `oʊ` (e.g. `kəˈləʊniəlɪzəm` not `kəˈloʊniəlɪzəm`), LOT vowel `ɒ` not `ɑ` (e.g. `bəˈrɒk` not `bəˈrɑk`). When unsure of a specific word's British form, check a dictionary rather than guessing.
 3. Append the rows to `data/words-bank.csv` with today's actual date (`YYYY-MM-DD`). Use Python's `csv` module (or equivalent careful quoting) when writing — several fields contain commas.
