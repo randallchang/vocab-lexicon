@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>每日學習</title>
+<title>Mythos 讀書會</title>
 <style>
 :root {
   --color-surface: #14110d;
@@ -26,7 +26,7 @@ body {
 }
 header {
   max-width: 760px;
-  margin: 0 auto 2rem;
+  margin: 0 auto 1.5rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -81,12 +81,101 @@ main {
   max-width: 760px;
   margin: 0 auto;
 }
+nav.chapter-nav {
+  max-width: 760px;
+  margin: 0 auto 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+.nav-btn {
+  border: 1px solid var(--color-accent);
+  background: var(--color-card);
+  color: var(--color-accent);
+  border-radius: 999px;
+  padding: 0.5rem 1.1rem;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+.nav-btn:hover:not(:disabled), .nav-btn:focus-visible:not(:disabled) {
+  background: var(--color-accent);
+  color: #fff;
+}
+.nav-btn:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+#chapter-select {
+  background: var(--color-card);
+  color: var(--color-text);
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  padding: 0.5rem 1rem;
+  font-size: 0.85rem;
+  max-width: 20rem;
+}
+.chapter-meta {
+  max-width: 760px;
+  margin: 0 auto 0.5rem;
+  color: var(--color-muted);
+  font-size: 0.85rem;
+  text-align: center;
+}
 h2 {
   font-family: var(--font-serif);
   font-size: 1.25rem;
   border-bottom: 2px solid var(--color-accent);
   padding-bottom: 0.4rem;
   margin: 2.5rem 0 1.25rem;
+}
+.chapter-title {
+  font-family: var(--font-serif);
+  font-size: clamp(1.4rem, 1.2rem + 1vw, 2rem);
+  color: var(--color-accent);
+  text-align: center;
+  margin: 0 0 0.25rem;
+}
+.chapter-part {
+  text-align: center;
+  color: var(--color-muted);
+  font-size: 0.9rem;
+  margin: 0 0 2rem;
+}
+.passage-original {
+  background: var(--color-card);
+  border: 1px solid var(--color-border);
+  border-radius: 10px;
+  padding: 0.5rem 1.5rem 1.25rem;
+  margin-bottom: 1.5rem;
+}
+.passage-original summary {
+  cursor: pointer;
+  font-family: var(--font-serif);
+  font-size: 1.1rem;
+  color: var(--color-accent);
+  padding: 0.75rem 0;
+}
+.passage-text {
+  font-family: var(--font-serif);
+  white-space: pre-line;
+  font-size: 1.02rem;
+  line-height: 1.85;
+}
+.analysis {
+  background: var(--color-card);
+  border-left: 3px solid var(--color-accent);
+  border-radius: 0 10px 10px 0;
+  padding: 1rem 1.5rem;
+  margin-bottom: 1.5rem;
+  color: var(--color-text);
+}
+.analysis-label {
+  color: var(--color-accent);
+  font-size: 0.85rem;
+  font-weight: bold;
+  margin: 0 0 0.5rem;
 }
 .word-card {
   background: var(--color-card);
@@ -188,7 +277,7 @@ h2 {
 </head>
 <body class="hide-zh">
 <header>
-  <h1 id="page-title">今日學習</h1>
+  <h1 id="page-title">Mythos 讀書會</h1>
   <div class="voice-picker">
     <label for="voice-select">發音語音</label>
     <select id="voice-select" aria-label="選擇發音語音"></select>
@@ -196,20 +285,24 @@ h2 {
 </header>
 <button id="toggle-zh" type="button" aria-pressed="true">顯示中文</button>
 <p id="speech-warning" role="alert">這個瀏覽器不支援語音播放（Web Speech API），發音按鈕暫時無法使用。</p>
-<p id="data-warning" role="alert">找不到今日資料，請先在專案目錄執行 <code>python3 render.py</code> 產生 word-today.js。</p>
+<p id="data-warning" role="alert">找不到章節資料，請先在專案目錄執行 <code>python3 render.py</code> 產生 book-data.js。</p>
+<nav class="chapter-nav" id="chapter-nav" aria-label="章節導覽" style="display: none;">
+  <button id="prev-btn" class="nav-btn" type="button">← 上一章</button>
+  <select id="chapter-select" aria-label="跳至章節"></select>
+  <button id="next-btn" class="nav-btn" type="button">下一章 →</button>
+</nav>
+<p class="chapter-meta" id="chapter-meta"></p>
 <main id="app"></main>
 
-<script src="word-today.js"></script>
+<script src="book-data.js"></script>
 <script>
 (function () {
   var app = document.getElementById('app');
 
-  if (typeof TODAY_DATA === 'undefined') {
+  if (typeof BOOK_DATA === 'undefined') {
     document.getElementById('data-warning').style.display = 'block';
     return;
   }
-
-  document.getElementById('page-title').textContent = '今日學習（' + TODAY_DATA.date + '）';
 
   var toggleZhBtn = document.getElementById('toggle-zh');
   toggleZhBtn.addEventListener('click', function () {
@@ -286,11 +379,95 @@ h2 {
     return sec;
   }
 
-  var newSection = section('new-heading', '新單字', TODAY_DATA.newWords, true);
-  if (newSection) app.appendChild(newSection);
+  // Chapter navigation: current chapter tracked in location.hash (#ch-N),
+  // defaulting to the latest chapter. Kept in the URL so a chapter view is
+  // bookmarkable/shareable and survives a refresh.
+  var chapters = BOOK_DATA.chapters;
+  var chapterByOrder = {};
+  chapters.forEach(function (c) { chapterByOrder[c.order] = c; });
 
-  var reviewSection = section('review-heading', '複習（從單字庫隨機抽選）', TODAY_DATA.reviewWords, false);
-  if (reviewSection) app.appendChild(reviewSection);
+  var chapterSelect = document.getElementById('chapter-select');
+  chapters.forEach(function (c) {
+    var opt = el('option', { text: '第' + c.order + '章：' + c.chapter });
+    opt.value = String(c.order);
+    chapterSelect.appendChild(opt);
+  });
+
+  function orderFromHash() {
+    var match = /^#ch-(\d+)$/.exec(location.hash);
+    var order = match ? parseInt(match[1], 10) : NaN;
+    return chapterByOrder[order] ? order : BOOK_DATA.latestOrder;
+  }
+
+  function renderChapter(order) {
+    var chapter = chapterByOrder[order];
+    if (!chapter) return;
+
+    app.innerHTML = '';
+
+    app.appendChild(el('p', { className: 'chapter-part', text: chapter.part }));
+    app.appendChild(el('h2', { className: 'chapter-title', text: chapter.chapter }));
+
+    var details = el('details', { className: 'passage-original' });
+    details.open = true;
+    var summary = el('summary', { text: '原文（p.' + chapter.pageStart + '–' + chapter.pageEnd + '）' });
+    details.appendChild(summary);
+    details.appendChild(el('p', { className: 'passage-text', text: chapter.text }));
+    app.appendChild(details);
+
+    var analysis = el('div', { className: 'analysis' });
+    analysis.appendChild(el('p', { className: 'analysis-label', text: '賞析' }));
+    analysis.appendChild(el('p', { text: chapter.analysisZh }));
+    app.appendChild(analysis);
+
+    var wordSection = section('new-heading', '生字', chapter.words, true);
+    if (wordSection) app.appendChild(wordSection);
+
+    document.getElementById('page-title').textContent = 'Mythos 讀書會';
+    document.getElementById('chapter-meta').textContent =
+      '第 ' + chapter.order + ' / ' + chapters.length + ' 章';
+    chapterSelect.value = String(order);
+    document.getElementById('prev-btn').disabled = !chapterByOrder[order - 1];
+    document.getElementById('next-btn').disabled = !chapterByOrder[order + 1];
+  }
+
+  function goToChapter(order) {
+    location.hash = 'ch-' + order;
+  }
+
+  document.getElementById('prev-btn').addEventListener('click', function () {
+    goToChapter(orderFromHash() - 1);
+  });
+  document.getElementById('next-btn').addEventListener('click', function () {
+    goToChapter(orderFromHash() + 1);
+  });
+  chapterSelect.addEventListener('change', function () {
+    goToChapter(parseInt(chapterSelect.value, 10));
+  });
+  window.addEventListener('hashchange', function () {
+    renderChapter(orderFromHash());
+  });
+
+  if (!chapters.length) {
+    document.getElementById('data-warning').style.display = 'block';
+    return;
+  }
+
+  document.getElementById('chapter-nav').style.display = 'flex';
+  renderChapter(orderFromHash());
+
+  // Play buttons are recreated on every chapter switch, so binding is
+  // delegated once on the document rather than queried per render.
+  document.addEventListener('click', function (event) {
+    var btn = event.target.closest('.play-btn');
+    if (!btn) return;
+    var utterance = new SpeechSynthesisUtterance(btn.dataset.speak);
+    utterance.lang = 'en-GB';
+    var voice = pickVoice();
+    if (voice) utterance.voice = voice;
+    speechSynthesis.cancel();
+    speechSynthesis.speak(utterance);
+  });
 
   var voiceSelect = document.getElementById('voice-select');
 
@@ -342,17 +519,6 @@ h2 {
       || voices.find(function (v) { return v.lang && v.lang.startsWith('en'); })
       || null;
   }
-
-  document.querySelectorAll('.play-btn').forEach(function (btn) {
-    btn.addEventListener('click', function () {
-      var utterance = new SpeechSynthesisUtterance(btn.dataset.speak);
-      utterance.lang = 'en-GB';
-      var voice = pickVoice();
-      if (voice) utterance.voice = voice;
-      speechSynthesis.cancel();
-      speechSynthesis.speak(utterance);
-    });
-  });
 })();
 </script>
 </body>
