@@ -163,6 +163,28 @@ h2 {
   font-size: 1.02rem;
   line-height: 1.85;
 }
+.word-token {
+  cursor: pointer;
+  border-radius: 3px;
+  padding: 0 1px;
+  transition: background 120ms ease, color 120ms ease;
+}
+.word-token:hover, .word-token:focus-visible {
+  background: var(--color-accent);
+  color: var(--color-surface);
+  outline: none;
+}
+body.speech-unsupported .word-token {
+  cursor: default;
+  pointer-events: none;
+}
+.sentence-play-btn {
+  font-size: 0.65rem;
+  width: 1.35rem;
+  height: 1.35rem;
+  margin: 0 0.15rem;
+  vertical-align: middle;
+}
 .analysis {
   background: var(--color-card);
   border-left: 3px solid var(--color-accent);
@@ -336,6 +358,47 @@ h2 {
     return btn;
   }
 
+  function wordToken(word) {
+    var span = el('span', { className: 'word-token', text: word });
+    span.dataset.speak = word;
+    span.setAttribute('role', 'button');
+    span.tabIndex = 0;
+    span.setAttribute('aria-label', '播放 ' + word + ' 發音');
+    return span;
+  }
+
+  // Splits passage text into word tokens (each clickable to hear that word
+  // alone) and inserts a small play button after every sentence so the
+  // whole sentence can be read aloud. Sentence boundaries are detected by
+  // ./!/? followed by optional closing quotes/brackets — good enough for
+  // prose, occasional false splits on abbreviations are harmless here.
+  function renderPassageText(text) {
+    var frag = document.createDocumentFragment();
+    // Sentence-ending punctuation (with any immediately-attached closing
+    // quote/bracket) is its own token, separate from surrounding
+    // whitespace, so the read-aloud button can be inserted right after the
+    // punctuation instead of after the trailing space/newline.
+    var tokens = text.match(/[A-Za-z]+(?:['’-][A-Za-z]+)*|[.!?]+["'’”)\]]*|[^A-Za-z]+/g) || [];
+    var sentenceText = '';
+
+    tokens.forEach(function (token) {
+      if (/^[A-Za-z]/.test(token)) {
+        frag.appendChild(wordToken(token));
+        sentenceText += token;
+        return;
+      }
+      frag.appendChild(document.createTextNode(token));
+      sentenceText += token;
+      if (/^[.!?]+["'’”)\]]*$/.test(token)) {
+        var spoken = sentenceText.trim().replace(/\s+/g, ' ');
+        if (spoken) frag.appendChild(playButton(spoken, 'play-btn-sm sentence-play-btn', '播放整句發音'));
+        sentenceText = '';
+      }
+    });
+
+    return frag;
+  }
+
   function wordCard(w, number) {
     var card = el('article', { className: 'word-card' });
 
@@ -412,7 +475,9 @@ h2 {
     details.open = true;
     var summary = el('summary', { text: '原文（p.' + chapter.pageStart + '–' + chapter.pageEnd + '）' });
     details.appendChild(summary);
-    details.appendChild(el('p', { className: 'passage-text', text: chapter.text }));
+    var passageText = el('p', { className: 'passage-text' });
+    passageText.appendChild(renderPassageText(chapter.text));
+    details.appendChild(passageText);
     app.appendChild(details);
 
     var analysis = el('div', { className: 'analysis' });
@@ -456,23 +521,46 @@ h2 {
   document.getElementById('chapter-nav').style.display = 'flex';
   renderChapter(orderFromHash());
 
-  // Play buttons are recreated on every chapter switch, so binding is
-  // delegated once on the document rather than queried per render.
-  document.addEventListener('click', function (event) {
-    var btn = event.target.closest('.play-btn');
-    if (!btn) return;
-    var utterance = new SpeechSynthesisUtterance(btn.dataset.speak);
+  // Most TTS engines treat an all-caps word as an acronym and spell it out
+  // letter by letter (e.g. "HEMERA" -> "H-E-M-E-R-A"). The passage text
+  // uses full caps for emphasis on proper nouns, so title-case it for
+  // speech only; the on-screen text keeps its original casing.
+  function normalizeCapsForSpeech(str) {
+    return str.replace(/\b[A-Z]{2,}\b/g, function (word) {
+      return word.charAt(0) + word.slice(1).toLowerCase();
+    });
+  }
+
+  function speak(text) {
+    if (!('speechSynthesis' in window)) return;
+    var utterance = new SpeechSynthesisUtterance(normalizeCapsForSpeech(text));
     utterance.lang = 'en-GB';
     var voice = pickVoice();
     if (voice) utterance.voice = voice;
     speechSynthesis.cancel();
     speechSynthesis.speak(utterance);
+  }
+
+  // Play buttons and word tokens are recreated on every chapter switch, so
+  // binding is delegated once on the document rather than queried per render.
+  document.addEventListener('click', function (event) {
+    var target = event.target.closest('.play-btn, .word-token');
+    if (!target) return;
+    speak(target.dataset.speak);
+  });
+  document.addEventListener('keydown', function (event) {
+    if (event.key !== 'Enter' && event.key !== ' ') return;
+    var target = event.target.closest('.word-token');
+    if (!target) return;
+    event.preventDefault();
+    speak(target.dataset.speak);
   });
 
   var voiceSelect = document.getElementById('voice-select');
 
   if (!('speechSynthesis' in window)) {
     document.getElementById('speech-warning').style.display = 'block';
+    document.body.classList.add('speech-unsupported');
     document.querySelectorAll('.play-btn').forEach(function (btn) { btn.disabled = true; });
     voiceSelect.disabled = true;
     return;
